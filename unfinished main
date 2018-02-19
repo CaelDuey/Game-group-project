@@ -1,0 +1,20 @@
+from tkinter import *
+import Map, spaceship
+
+window = Tk()
+window.title("spacerds")
+my_Map = Map.Map(window)
+
+space = PhotoImage(file = "gifphy.mp4")
+my_Map.canvas.create_image(0, 0, anchor=NW, image = space, tags="bg_img")
+
+my_Map.canvas.lower("bg_img")
+
+spaceship.R
+
+
+
+
+window.mainloop()
+
+
