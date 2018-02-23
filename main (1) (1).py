@@ -1,32 +1,41 @@
 from tkinter import *
-import Map, spaceship
+
+import maps, ship, laser
 
 window = Tk()
 window.title("spacerds")
-my_Map = Map.Map(window)
+my_maps = maps.Map(window)
 
-space = PhotoImage(file = "gifphy.mp4")
-my_Map.canvas.create_image(0, 0, anchor=NW, image = space, tags="bg_img")
+starry_night_image = PhotoImage(file = "giphy.gif")
+my_maps.canvas.create_image(0, 0, anchor=NW, image = starry_night_image, tags="bg_img")
 
-my_Map.canvas.lower("bg_img")
+my_maps.canvas.lower("bg_img")
 
-spaceship_R = spaceship.Ship(Map=my_Map, width=15, height=100, x_pos=570, y_pos=140, color="white")
-spaceship_L = spaceship.Ship(Map=my_Map, width=15, height=100, x_pos=10, y_pos=140, color="blue")
+x_velocity = 0
+y_velocity = -10
+first_serve = True
+direction = "right"
+
+my_laser = laser.Laser(maps=my_maps, x_speed=x_velocity, y_speed=y_velocity,
+                     height=20, width=10, color="red")
+
+ship_R = ship.Ship(maps=my_maps, width=50, height=50, x_posn=550, y_posn=140, color="white")
+ship_L = ship.Ship(maps=my_maps, width=50, height=50, x_posn=10, y_posn=140, color="blue")
 #may not work
-spaceship_R.detect_collision(my_laser, sides_sweet_spot=False, topnbottom_sweet_spot= True)
-spaceship_L.detect_collision(my_laser, sides_sweet_spot=False, topnbottom_sweet_spot= True)
+#ship_R.detect_collision(my_laser, sides_sweet_spot=False, topnbottom_sweet_spot= True)
+#ship_L.detect_collision(my_laser, sides_sweet_spot=False, topnbottom_sweet_spot= True)
 #work in progress
-def game_flow():
+#def game_flow():
+ 
 
-
-window.bind("w", spaceship_L.move_up)
-window.bind("s", spaceship_L.move_down)
-window.bind("a", spaceship_L.move_left)
-window.bind("d", spaceship_L.move_right)
-window.bind("<Up>",spaceship_R.move_up)
-window.bind("<Down>",spaceship_R.move_down)
-window.bind("<Right>",spaceship_R.move_right)
-window.bind("<Left>",spaceship_R.move_left)
+window.bind("w", ship_L.move_up)
+window.bind("s", ship_L.move_down)
+window.bind("a", ship_L.move_left)
+window.bind("d", ship_L.move_right)
+window.bind("<Up>",ship_R.move_up)
+window.bind("<Down>",ship_R.move_down)
+window.bind("<Right>",ship_R.move_right)
+window.bind("<Left>",ship_R.move_left)
 
 
 
